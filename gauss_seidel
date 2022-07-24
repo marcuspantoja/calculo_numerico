@@ -1,0 +1,55 @@
+import numpy
+### resolucao sistemas lineares  ###
+'''
+Autor: Marcus Pantoja da Siva
+Universidade Federal do Amapá
+Gauss-Seidel
+'''
+# Gauss Jacobi
+
+def vetorD(A):
+    n = len(A)
+    d = n*[0]
+    for i in range(n):
+        d[i]=A[i][n]/A[i][i]
+    return d
+
+def matrizC(A):
+    n = len(A)
+    # inicializar matriz
+    C = numpy.zeros((n,n))
+    for i in range(n): #linhas
+        for j in range(n): #colunas
+            #print(i,j)
+            if i == j:
+                C[i][j]=0
+            else:
+                C[i][j]=A[i][j]/A[i][i]
+    return C            
+
+
+#definir o erro
+erro = 0.001
+#definir numero maximo de iteracoes
+iter = 1000
+
+# matriz do sistema
+
+A = [[6, -3, -3, 0, 0, 0],[-3, 6, 0, -3, -0, 6],[-3, 0, 6, -1, -2, 0],[0, -3, -1, 5, 0, 2],[0, 0, -2, 0, 3, -3]]
+#solucao inicial
+x= [0,0,0,0,0]
+# execucao do algoritmo
+d = vetorD(A)
+C = matrizC(A)
+
+# x = d -Cx
+# criterio de parada é o número de iteracoes
+for k in range(iter): # número de iteracoes
+    for i in range(len(A)):
+        soma = 0
+        for j in range(len(A)):
+            soma = soma + C[i,j]*x[j]     
+        x[i]=d[i]-soma
+            
+            
+print("Solução:", x)
