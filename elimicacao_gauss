@@ -2,7 +2,7 @@
 '''
 Autor: Marcus Pantoja da Siva
 Universidade Federal do Amapá
-Eliminação de Gauss
+Eliminação de Gauss - test
 '''
  
 def triangular(A):
